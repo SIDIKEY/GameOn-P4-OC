@@ -10,6 +10,15 @@
 }
 /* Landing Page */
 
+.error {
+  color: #ff0728;
+ 
+}
+
+.valid {
+  color: green;
+}
+
 body {
   margin: 0;
   display: flex;

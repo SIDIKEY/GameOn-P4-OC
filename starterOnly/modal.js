@@ -16,8 +16,14 @@ const form = document.querySelector('form')
 
 // form
 const firstName = document.getElementById("first");
+const firstError = document.getElementById("firstFieldMessage");
+
 const lastName = document.getElementById("last");
+const lastError = document.getElementById("lastFieldMessage");
+
 const email = document.getElementById("email");
+const emailError = document.getElementById("emailFieldMessage");
+
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const locations = document.querySelectorAll("input[name='location']")
@@ -61,6 +67,17 @@ function firstValidation(){
       return true;
     };
   }
+
+  firstName.addEventListener('change', (event) => {
+    firstValidation(firstName)
+  });
+  
+  lastName.addEventListener('change', (event) => {
+    lastValidation(lastName)
+  });
+  email.addEventListener('change', (event) => {
+    emailValidation(email)
+  });
   
   function emailValidation (){
     if (!email.value.match(regExEmail)) {
