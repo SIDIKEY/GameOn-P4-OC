@@ -28,8 +28,11 @@ const birthdate = document.getElementById("birthdate");
 const birthdateError = document.getElementById("birthdateFieldMessage");
 
 const quantity = document.getElementById("quantity");
+const quantityError = document.getElementById("quantityFieldMessage");
+
 const locations = document.querySelectorAll("input[name='location']")
 const conditions = document.getElementById("checkbox1");
+const submitBtn = document.getElementById("btn-submit");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -52,18 +55,19 @@ function firstValidation(){
     firstError.textContent = "veuillez renseigner un prénom valide";
     firstName.classList.add ("error")
     return false;
-  }
+  }{
     firstName.classList.add ("valid")
     firstError.textContent = "";
     return true;
   }
+}
 
 function lastValidation() {
   if (!lastName.value.match(regEx)) {
       lastError.textContent = "veuillez renseigner un nom valide";
       lastName.classList.add ("error") 
       return false;
-  }else {
+  }{
       lastName.classList.add ("valid")
       lastError.textContent = "";
       return true;
@@ -75,7 +79,7 @@ function emailValidation (){
     emailError.textContent = "veuillez renseigner un email valide";
     email.classList.add ("error") 
     return false;
-  }else {
+  }{
     email.classList.add ("valid")
     emailError.textContent = "";
     return true;
@@ -86,6 +90,17 @@ function birthdateValidation() {
   let dateInput = birthdate.value; 
   let dateObj = new Date(dateInput);
   console.log(dateObj)
+  const birthYear = dateObj.getFullYear();
+  console.log(birthYear);
+  
+  const date = new Date();
+  const currentYear = date.getFullYear();
+  const today = date.getDate();
+  const currentMonth = date.getMonth() + 1; 
+  console.log(currentYear);
+  console.log(currentMonth);
+  console.log(today);
+
   function isDateValid(dateInput) {
     return !isNaN(new Date(dateInput));
   }
@@ -97,12 +112,26 @@ function birthdateValidation() {
     birthdateError.classList.remove("valid");
     birthdateError.classList.add("error");
     return false;
-  }else {
+  }{
     birthdateError.classList.remove("error");
     birthdateError.classList.add("valid");
     return true;
   }
 };
+
+function quantityValidation() {                      
+  if (quantity.value >= 0 && quantity.value <= 9 && quantity.value.length >= 1) {
+    quantityError.classList.remove("error")
+    quantityError.classList.add("valid") 
+    quantityError.innerHTML = ""   
+    return true;
+  }{
+    quantityError.innerHTML = "veuillez entrer un nombre valide"
+    quantityError.classList.add("error")
+    quantityError.classList.remove("valid")
+  } 
+  
+}
 
 firstName.addEventListener('change', (event) => {
   firstValidation(firstName)
@@ -119,6 +148,21 @@ email.addEventListener('change', (event) => {
 birthdate.addEventListener('change', (event) => {
   birthdateValidation(birthdate)
 });
+
+quantity.addEventListener('change', (event) => {
+  quantityValidation(quantity)
+});
+
+
+
+submitBtn.addEventListener("click", function(e) {
+  e.preventDefault();
+ 
+  console.log(firstName.value, lastName.value, email.value, birthdate.value, quantity.value)
+  
+ 
+ 
+ });
   
   
 
