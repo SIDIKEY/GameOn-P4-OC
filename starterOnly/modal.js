@@ -36,3 +36,41 @@ btnCloseModal.addEventListener("click", function() {
   modalbg.style.display = "none";
 });
 
+const regEx='^([A-Za-z]{2,20})?([-]{0,1})?([A-Za-z]{2,20})$';
+const regExEmail = /^\S+@\S+\.\S+$/;
+
+function firstValidation(){   
+  if (!firstName.value.match(regEx)) {
+    firstError.textContent = "veuillez renseigner un prénom valide";
+    firstName.classList.add ("error")
+    return false;
+  }
+    firstName.classList.add ("valid")
+    firstError.textContent = "";
+    return true;
+  }
+
+  function lastValidation() {
+    if (!lastName.value.match(regEx)) {
+      lastError.textContent = "veuillez renseigner un nom valide";
+      lastName.classList.add ("error") 
+      return false;
+    }else {
+      lastName.classList.add ("valid")
+      lastError.textContent = "";
+      return true;
+    };
+  }
+  
+  function emailValidation (){
+    if (!email.value.match(regExEmail)) {
+      emailError.textContent = "veuillez renseigner un email valide";
+      email.classList.add ("error") 
+      return false;
+    }else {
+      email.classList.add ("valid")
+      emailError.textContent = "";
+      return true;
+    }
+  }
+
