@@ -153,11 +153,19 @@ quantity.addEventListener('change', (event) => {
   quantityValidation(quantity)
 });
 
-
+function validate(){ 
+  if (firstValidation(firstName) && lastValidation (lastName) && emailValidation(email) 
+  && birthdateValidation(birthdate) && quantityValidation(quantity)){   
+      form.submit();
+      alert("Merci ! Votre réservation a été reçue");
+    }else {
+      alert("fail");
+    }
+  }
 
 submitBtn.addEventListener("click", function(e) {
   e.preventDefault();
- 
+  validate();
   console.log(firstName.value, lastName.value, email.value, birthdate.value, quantity.value)
   
  
