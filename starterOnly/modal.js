@@ -25,6 +25,8 @@ const email = document.getElementById("email");
 const emailError = document.getElementById("emailFieldMessage");
 
 const birthdate = document.getElementById("birthdate");
+const birthdateError = document.getElementById("birthdateFieldMessage");
+
 const quantity = document.getElementById("quantity");
 const locations = document.querySelectorAll("input[name='location']")
 const conditions = document.getElementById("checkbox1");
@@ -56,38 +58,67 @@ function firstValidation(){
     return true;
   }
 
-  function lastValidation() {
-    if (!lastName.value.match(regEx)) {
+function lastValidation() {
+  if (!lastName.value.match(regEx)) {
       lastError.textContent = "veuillez renseigner un nom valide";
       lastName.classList.add ("error") 
       return false;
-    }else {
+  }else {
       lastName.classList.add ("valid")
       lastError.textContent = "";
       return true;
-    };
-  }
+  };
+}
 
-  firstName.addEventListener('change', (event) => {
-    firstValidation(firstName)
-  });
-  
-  lastName.addEventListener('change', (event) => {
-    lastValidation(lastName)
-  });
-  email.addEventListener('change', (event) => {
-    emailValidation(email)
-  });
-  
-  function emailValidation (){
-    if (!email.value.match(regExEmail)) {
-      emailError.textContent = "veuillez renseigner un email valide";
-      email.classList.add ("error") 
-      return false;
-    }else {
-      email.classList.add ("valid")
-      emailError.textContent = "";
-      return true;
-    }
+function emailValidation (){
+  if (!email.value.match(regExEmail)) {
+    emailError.textContent = "veuillez renseigner un email valide";
+    email.classList.add ("error") 
+    return false;
+  }else {
+    email.classList.add ("valid")
+    emailError.textContent = "";
+    return true;
   }
+}
+
+function birthdateValidation() {
+  let dateInput = birthdate.value; 
+  let dateObj = new Date(dateInput);
+  console.log(dateObj)
+  function isDateValid(dateInput) {
+    return !isNaN(new Date(dateInput));
+  }
+  console.log(isDateValid(dateInput))
+  
+  
+  if(isDateValid(dateInput) == false) {
+    birthdateError.innerHTML = "Veuillez entrer une date de naissance valide";
+    birthdateError.classList.remove("valid");
+    birthdateError.classList.add("error");
+    return false;
+  }else {
+    birthdateError.classList.remove("error");
+    birthdateError.classList.add("valid");
+    return true;
+  }
+};
+
+firstName.addEventListener('change', (event) => {
+  firstValidation(firstName)
+});
+  
+lastName.addEventListener('change', (event) => {
+  lastValidation(lastName)
+});
+
+email.addEventListener('change', (event) => {
+  emailValidation(email)
+});
+
+birthdate.addEventListener('change', (event) => {
+  birthdateValidation(birthdate)
+});
+  
+  
 
