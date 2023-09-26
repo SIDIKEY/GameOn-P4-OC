@@ -31,6 +31,8 @@ const quantity = document.getElementById("quantity");
 const quantityError = document.getElementById("quantityFieldMessage");
 
 const locations = document.querySelectorAll("input[name='location']")
+const locationsError = document.getElementById("checkboxMessage")
+
 const conditions = document.getElementById("checkbox1");
 const submitBtn = document.getElementById("btn-submit");
 
@@ -131,7 +133,32 @@ function quantityValidation() {
     quantityError.classList.remove("valid")
   } 
   
+};
+
+function locationsValidation() {
+  console.log('locations', locations)
+  for(let i = 0; i < locations.length; i++) {
+    console.log('{{{', locations[i])
+    if(locations[i].checked) {
+      locationsError.innerHTML ="";
+      locationsError.classList.add("valid")
+      locationsError.classList.remove("error")
+      return true       
+    }
+      
+    
+    
+  }
+  return false
 }
+
+
+
+
+
+      
+
+      
 
 firstName.addEventListener('change', (event) => {
   firstValidation(firstName)
@@ -153,24 +180,29 @@ quantity.addEventListener('change', (event) => {
   quantityValidation(quantity)
 });
 
+locations.forEach((checkbox) => checkbox.addEventListener('change', (event) => {
+  locationsValidation(locations)
+  console.log(locationsValidation(locations))
+}));
+
+
 function validate(){ 
   if (firstValidation(firstName) && lastValidation (lastName) && emailValidation(email) 
-  && birthdateValidation(birthdate) && quantityValidation(quantity)){   
-      form.submit();
-      alert("Merci ! Votre réservation a été reçue");
-    }else {
-      alert("fail");
-    }
+  && birthdateValidation(birthdate) && quantityValidation(quantity) && locationsValidation(locations)){   
+    form.submit();
+    alert("Merci ! Votre réservation a été reçue.");
+    
+  }else {
+    alert("failed! try again");
   }
+}
 
-submitBtn.addEventListener("click", function(e) {
+
+submitBtn.addEventListener('click', e => {
+  validate()
   e.preventDefault();
-  validate();
-  console.log(firstName.value, lastName.value, email.value, birthdate.value, quantity.value)
-  
- 
- 
- });
+
+});
   
   
 

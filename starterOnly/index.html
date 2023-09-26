@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <title>Reservation</title>
+    <title>GameOn</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="modal.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -59,7 +59,7 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              onsubmit="event.preventDefault(); validate();;"
             >
               <div
                 class="formData">
@@ -109,12 +109,14 @@
                 /><br>
               </div>
               <span class="error" id="birthdateFieldMessage"></span>
+
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
               </div>
               <span  id="quantityFieldMessage"></span>
+
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
                 class="formData">
@@ -185,6 +187,7 @@
                   Portland</label
                 >
               </div>
+              <span id="checkboxMessage"></span>
 
               <div class="formData">
                 <input class="checkbox-input" type="checkbox" id="checkbox1" checked/>
