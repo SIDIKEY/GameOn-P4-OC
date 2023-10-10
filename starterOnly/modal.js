@@ -8,11 +8,12 @@ function editNav() {
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
+const modalBg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const btnCloseModal = document.querySelector(".close");
 const form = document.querySelector('form')
+const btnModalConfirmation = document.getElementById("closeconfirmation");
 
 // form
 const firstName = document.getElementById("first");
@@ -34,6 +35,7 @@ const locations = document.querySelectorAll("input[name='location']")
 const locationsError = document.getElementById("checkboxMessage")
 
 const conditions = document.getElementById("checkbox1");
+const conditionsCheckbox1Error = document.getElementById("conditionsCheckbox_1Message")
 const submitBtn = document.getElementById("btn-submit");
 
 // launch modal event
@@ -41,13 +43,22 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
+  modalBg.style.display = "block";
 }
 
 // Close modal form 
 btnCloseModal.addEventListener("click", function() {
-  modalbg.style.display = "none";
+  modalBg.style.display = "none";
 });
+
+btnModalConfirmation.addEventListener("click", function() {
+  modalBg.style.display = "none";
+  document.getElementById('modal2').style.display = 'none';
+  form.submit();
+  window.location.reload;
+    
+});
+
 
 const regEx='^([A-Za-z]{2,20})?([-]{0,1})?([A-Za-z]{2,20})$';
 const regExEmail = /^\S+@\S+\.\S+$/;
@@ -152,7 +163,19 @@ function locationsValidation() {
   return false
 }
 
-
+function conditionsValidation() {
+  if(conditions.checked) {
+    locationsError.innerHTML ="";
+    locationsError.classList.add("valid")
+    locationsError.classList.remove("error")
+    return true
+  }{
+    locationsError.innerHTML ="Veuillez accepter les conditions d'utilisations";
+    locationsError.classList.remove("valid")
+    locationsError.classList.add("error")
+    return false
+  }
+}
 
 
 
@@ -185,12 +208,17 @@ locations.forEach((checkbox) => checkbox.addEventListener('change', (event) => {
   console.log(locationsValidation(locations))
 }));
 
+conditions.addEventListener('change', (Event) => {
+  conditionsValidation(conditions)
+  console.log(conditionsValidation(conditions))
+})
+
 
 function validate(){ 
   if (firstValidation(firstName) && lastValidation (lastName) && emailValidation(email) 
   && birthdateValidation(birthdate) && quantityValidation(quantity) && locationsValidation(locations)){   
-    form.submit();
-    alert("Merci ! Votre réservation a été reçue.");
+    document.getElementById('modal2').style.display = 'block'
+    form.style.filter = "blur(4px)" 
     
   }else {
     alert("failed! try again");
@@ -199,9 +227,8 @@ function validate(){
 
 
 submitBtn.addEventListener('click', e => {
-  validate()
   e.preventDefault();
-
+  validate();
 });
   
   

@@ -54,7 +54,11 @@
       <div class="bground">
         <div class="content">
           <span class="close"></span>
+
+          
           <div class="modal-body">
+
+
             <form
               name="reserve"
               action="index.html"
@@ -195,6 +199,7 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
+                <span id="conditionsCheckbox_1Message"></span>
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
@@ -213,7 +218,22 @@
             </form>
           </div>
         </div>
+        <div class="modal" id="modal2">
+          <div class="modal-back"></div>
+          <div class="modal-container">
+            Merci! Vos informations ont bien été pris en compte.<br />
+            <input
+                type="submit"
+                class="button"
+                id="closeconfirmation"
+                value="fermer"
+              />
+          </div>
+        </div>
+
+        
       </div>
+      
     </main>
     <footer>
       <p class="copyrights">
