@@ -14,7 +14,7 @@ const formData = document.querySelectorAll(".formData");
 const btnCloseModal = document.querySelector(".close");
 const form = document.querySelector('form')
 const btnModalConfirmation = document.getElementById("closeconfirmation");
-
+const btnCloseModal2 = document.querySelector('.close2');
 // form
 const firstName = document.getElementById("first");
 const firstError = document.getElementById("firstFieldMessage");
@@ -49,8 +49,13 @@ function launchModal() {
 // Close modal form 
 btnCloseModal.addEventListener("click", function() {
   modalBg.style.display = "none";
+  document.getElementById('modal2').style.display = 'none'
 });
 
+btnCloseModal2.addEventListener("click", function() {
+  document.getElementById('modal2').style.display = 'none'
+
+})
 btnModalConfirmation.addEventListener("click", function() {
   modalBg.style.display = "none";
   document.getElementById('modal2').style.display = 'none';
@@ -155,10 +160,7 @@ function locationsValidation() {
       locationsError.classList.add("valid")
       locationsError.classList.remove("error")
       return true       
-    }
-      
-    
-    
+    }    
   }
   return false
 }
@@ -218,6 +220,7 @@ function validate(){
   if (firstValidation(firstName) && lastValidation (lastName) && emailValidation(email) 
   && birthdateValidation(birthdate) && quantityValidation(quantity) && locationsValidation(locations)){   
     document.getElementById('modal2').style.display = 'block'
+    document.querySelector('.content').style.display = "none"
     form.style.filter = "blur(4px)" 
     
   }else {
