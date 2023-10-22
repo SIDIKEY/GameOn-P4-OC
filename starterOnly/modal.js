@@ -49,7 +49,7 @@ function launchModal() {
 // Close modal form 
 btnCloseModal.addEventListener("click", function() {
   modalBg.style.display = "none";
-  document.getElementById('modal2').style.display = 'none'
+  
 });
 
 btnCloseModal2.addEventListener("click", function() {
@@ -57,7 +57,7 @@ btnCloseModal2.addEventListener("click", function() {
 
 })
 btnModalConfirmation.addEventListener("click", function() {
-  modalBg.style.display = "none";
+  modalBg.style.display = "none" ;
   document.getElementById('modal2').style.display = 'none';
   form.submit();
   window.location.reload;
@@ -223,8 +223,6 @@ function validate(){
     document.querySelector('.content').style.display = "none"
     form.style.filter = "blur(4px)" 
     
-  }else {
-    alert("failed! try again");
   }
 }
 
