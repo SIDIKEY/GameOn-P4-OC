@@ -192,13 +192,13 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
-  border: 4px solid red;
+  border: 0px solid red;
 }
 
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
-  border: 4px solid greenyellow;
+  
 }
 
 .modal {
