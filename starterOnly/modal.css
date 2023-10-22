@@ -191,7 +191,7 @@ main {
   overflow: hidden;
   position: relative;
   color: #fff;
-  padding-top: 10px;
+  padding-bottom: 5px;
   border: 0px solid red;
 }
 
@@ -220,7 +220,7 @@ main {
   top: 50%;
   left: 50%;
   padding: 15px 8%;
-  margin: 15px auto;
+  margin: 5px auto;
   width: 100%;
   max-width: 500px;
   color: white;
